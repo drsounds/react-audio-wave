@@ -383,7 +383,7 @@ const ReactAudioWave = forwardRef(
                                 cursorColor={cursorColor}
                                 cursorVisible={cursorVisible}
                             />
-                            {segments.map((segment: Segment) => (
+                            {segments?.map((segment: Segment) => (
                                 <SegmentTime
                                     className="segment-time"
                                     key={segment.id}
