@@ -393,7 +393,9 @@ const ReactAudioWave = forwardRef(
                                     pixelRatio={waveCanvasProps.pixelRatio}
                                     segmentStyle={segment.style}
                                     onClick={segment.onClick}
-                                />
+                                >
+                                    {segment.children}
+                                </SegmentTime>
                             ))}
                             <WaveCanvas {...waveCanvasProps} />
                         </div>
