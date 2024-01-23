@@ -1,5 +1,5 @@
 {
-    "name": "react-audio-wave",
+    "name": "react-audio-wave-with-segments",
     "version": "1.0.0",
     "description": "visualize a waveform of an audio file",
     "main": "dist/react-audio-wave.cjs.js",
