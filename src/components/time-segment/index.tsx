@@ -1,13 +1,12 @@
 import type { CSSProperties, ReactElement } from "react";
 import classNames from "classnames";
 import "./index.scss";
-import type { Segment } from "@/wave";
 
 export interface SegmentTimeProps {
     children?: ReactElement;
     className?: string;
     pixelRatio: number;
-    segment: Segment;
+    segment: { duration: number; position: number };
     segmentStyle?: CSSProperties;
     onClick: (value: unknown) => void;
 }
