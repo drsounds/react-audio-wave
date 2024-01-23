@@ -6,13 +6,25 @@ import useSize from "./useSize";
 import WaveCanvas from "./components/wave-canvas";
 import WaveProgress from "./components/wave-progress";
 import LoadedPercent from "./components/loaded-percent";
+
 import type { WaveProgressInstanceMethodType } from "./components/wave-progress";
 import type { CursorTimeMethodType, CursorTimeConfig } from "./components/cursor-time";
 import type { LoadedPercentMethodType } from "./components/loaded-percent";
+
 import CursorTime from "./components/cursor-time";
 import { WebAudio, fetchFile, formatPercent } from "./helpers";
 import type { PeakData, Peaks } from "./helpers";
 import "./wave.scss";
+import SegmentTime from "./components/time-segment";
+
+export interface Segment {
+    id: string;
+    position: number;
+    duration: number;
+    title: number;
+    style: CSSProperties;
+    onClick: (segment: Segment) => void;
+}
 
 export enum LoadStateEnum {
     "EMPTY" = -1,
@@ -44,6 +56,7 @@ export interface ReactAudioWaveProps {
     cursorVisible?: boolean;
     cursorTimeConfig?: CursorTimeConfig;
     className?: string;
+    segments?: Array<Segment>;
     timeFormat?: (seconds: number) => string;
     onChangeLoadState?: (state: LoadStateEnum, duration?: number) => void;
     onCurrentTimeChange?: (current: number) => void;
@@ -100,6 +113,7 @@ const ReactAudioWave = forwardRef(
             supportPlaybackRate = false,
             emptyElement = <span>no audio content</span>,
             renderErrorElement = renderErrorElementFunc,
+            segments,
         } = props;
         const [loadState, setLoadState] = useState<LoadStateEnum>(LoadStateEnum.INIT);
         const webAudioRef = useRef<any>(null);
@@ -369,6 +383,16 @@ const ReactAudioWave = forwardRef(
                                 cursorColor={cursorColor}
                                 cursorVisible={cursorVisible}
                             />
+                            {segments.map((segment: Segment) => (
+                                <SegmentTime
+                                    className="segment-time"
+                                    key={segment.id}
+                                    segment={segment}
+                                    pixelRatio={waveCanvasProps.pixelRatio}
+                                    segmentStyle={segment.style}
+                                    onClick={segment.onClick}
+                                />
+                            ))}
                             <WaveCanvas {...waveCanvasProps} />
                         </div>
                     );
@@ -389,6 +413,7 @@ const ReactAudioWave = forwardRef(
             waveColor,
             waveHeight,
             width,
+            segments,
             timeFormat,
         ]);
 

@@ -117,6 +117,18 @@ const AudioPlayer = () => {
                 onPlayEnded={onPlayEnded}
                 timeFormat={timeFormat}
                 placeholder={Placeholder}
+                segments={[
+                    {
+                        id: 'test',
+                        position: 112,
+                        duration: 60,
+                        title: 'test',
+                        style: {
+                            background: "rgba(127, 127, 127, .5)",
+                            color: 'black'
+                        },
+                    }
+                ]}
             />
         </div>
     );
