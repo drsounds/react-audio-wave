@@ -62,6 +62,7 @@ export interface ReactAudioWaveProps {
     onCurrentTimeChange?: (current: number) => void;
     onWaveSizeChange?: (size: Size) => void;
     onPlayEnded?: () => void;
+    onWaveSeekClick?: (a: { offsetTime: number }) => void;
     renderErrorElement?: (error?: string) => ReactElement;
 }
 
@@ -299,6 +300,7 @@ const ReactAudioWave = forwardRef(
         const onWaveSeekClick = (event) => {
             const { time: offsetTime } = calcCurrentPosition(event);
             seekTo(offsetTime);
+            onWaveSeekClick({ offsetTime });
         };
 
         // 有实时指针的时候移动的时候实时计算移动到音频哪个时间点
