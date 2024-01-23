@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactElement } from "react";
 import classNames from "classnames";
 import "./index.scss";
-import { Segment } from "@/wave";
+import type { Segment } from "@/wave";
 
 export interface SegmentTimeProps {
     children?: ReactElement;
