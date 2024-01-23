@@ -19,6 +19,7 @@ import SegmentTime from "./components/time-segment";
 
 export interface Segment {
     id: string;
+    children?: ReactElement;
     position: number;
     duration: number;
     title: number;
